@@ -21,6 +21,27 @@ async function addGame(game: Game) {
 }
 
 
+async function deleteGame(game: Game) {
+    let id = game.id;
+    const result = await sql`DELETE FROM games WHERE id = ${id} RETURNING *`;
+    return result;
+}
+
+async function updateGame(game: Game){
+    let rawg_id = game.rawg_id;
+    let slug = game.slug;
+    let name = game.name;
+    let released = game.released;
+    let playtime = game.playtime;
+    let background_image = game.background_image;
+    let metacritic = game.metacritic;
+    let created_at = game.created_at;
+    let id = game.id;
+    const result = await sql`UPDATE games SET rawg_id = ${rawg_id}, slug = ${slug}, name = ${name}, released = ${released}, playtime = ${playtime}, background_image = ${background_image}, metacritic = ${metacritic}, created_at = ${created_at} WHERE id = ${id} RETURNING *`;
+    return result;
+}
+
+
 async function gameTableReset() {
     await sql`DROP TABLE IF EXISTS public.games CASCADE`;
 
@@ -41,6 +62,8 @@ async function gameTableReset() {
 module.exports = {
     getGame,
     addGame,
+    deleteGame,
+    updateGame,
     gameTableReset
 };
 
