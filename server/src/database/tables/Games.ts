@@ -1,5 +1,5 @@
 const sql = require('./postgres.server');
-import type { Game } from './game.ts';
+import type { Game } from '../types/game.js';
 
 async function getGame(gameId: string){
     const game = await sql`SELECT * FROM games WHERE id = ${gameId}`;

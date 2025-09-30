@@ -1,6 +1,6 @@
 const sql = require('./postgres.server');
-import type { Backlog } from './backlog';
-import type { User } from './user';
+import type { Backlog } from '../types/backlog';
+import type { User } from '../types/user';
 
 
 async function getBacklog(userID: string){

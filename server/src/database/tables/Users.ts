@@ -1,5 +1,5 @@
 const sql = require('./postgres.server');
-import type { User } from './user';
+import type { User } from '../types/user';
 
 async function getUserById(userId: string) {
     const user = await sql`SELECT * FROM users WHERE id = ${userId}`;
