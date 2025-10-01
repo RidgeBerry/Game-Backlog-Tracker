@@ -1,4 +1,4 @@
-const sql = require('./postgres.server');
+const sql = require('../utilities/postgres.server');
 import type { Genre } from '../types/genre';
 import type { GameGenre } from '../types/gamegenre';
 import type { Game } from '../types/game';

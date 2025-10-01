@@ -1,4 +1,4 @@
-const sql = require('./postgres.server');
+const sql = require('../utilities/postgres.server');
 import type { GamePlatform } from '../types/gameplatform';
 
 async function addGamePlatform(gamePlatform: GamePlatform){

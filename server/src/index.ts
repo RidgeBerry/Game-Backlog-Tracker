@@ -1,7 +1,8 @@
 const express = require('express');
 const dotenv = require('dotenv');
-const sql = require('./database/postgres.server');
-const { resetDatabase } = require('./database/databasereset');
+const sql = require('./database/utilities/postgres.server');
+const { resetDatabase } = require('./database/utilities/databasereset');
+const {runAllTests} = require('./database/tests/index');
 import type { Request, Response } from 'express';
 
 
@@ -42,5 +43,33 @@ app.post('/internal/reset-db', async (req: Request, res: Response) => {
   } catch (err) {
     console.error('reset-db error:', err);
     return res.status(500).json({ error: 'Reset failed', details: (err && (err as Error).message) || undefined });
+  }
+});
+
+app.post('/internal/test-db', async (req: Request, res: Response) => {
+   const provided = req.header('x-reset-key') || (req.query && req.query.key);
+  const secret = process.env.RESET_DB_KEY;
+
+  if (!secret || provided !== secret) {
+    // Conceal the endpoint if unauthorized
+    return res.status(404).send('Not found');
+  }
+
+  try {
+    // runAllTests should return a summary or throw errors
+    const results = await runAllTests(); 
+
+    return res.json({
+      ok: true,
+      message: 'Database tests completed.',
+      results, // can include details like passed/failed per table
+    });
+  } catch (err) {
+    console.error('test-db error:', err);
+    return res.status(500).json({
+      ok: false,
+      error: 'Tests failed',
+      details: (err && (err as Error).message) || undefined,
+    });
   }
 });

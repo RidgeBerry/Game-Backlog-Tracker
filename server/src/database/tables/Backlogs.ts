@@ -1,4 +1,4 @@
-const sql = require('./postgres.server');
+const sql = require('../utilities/postgres.server');
 import type { Backlog } from '../types/backlog';
 import type { User } from '../types/user';
 

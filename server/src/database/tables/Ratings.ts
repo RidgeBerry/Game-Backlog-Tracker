@@ -1,4 +1,4 @@
-const sql = require('./postgres.server');
+const sql = require('../utilities/postgres.server');
 import type { Rating } from '../types/rating';
 
 async function getRatingById(ratingId: string) {

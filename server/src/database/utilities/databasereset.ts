@@ -1,14 +1,14 @@
-const { gameTableReset } = require('..tables/Games.ts');
-const { userTableReset } = require('..tables/Users.ts');
-const { backlogTableReset } = require('..tables/Backlogs.ts');
-const { genresTableReset } = require('..tables/Genres.ts');
-const { platformsTableReset } = require('..tables/Platforms.ts');
-const { ratingsTableReset } = require('..tables/Ratings.ts');
-const { storesTableReset } = require('..tables/Stores.ts');
-const {gameGenresTableReset} = require('..join-tables/GameGenres.ts');
-const {gamePlatformsTableReset} = require('..join-tables/GamePlatforms.ts');
-const {gameStoresTableReset} = require('..join-tables/GameStores.ts');   
-const sql = require('./postgres.server');
+const { gameTableReset } = require('../tables/Games');
+const { userTableReset } = require('../tables/Users');
+const { backlogTableReset } = require('../tables/Backlogs');
+const { genresTableReset } = require('../tables/Genres');
+const { platformsTableReset } = require('../tables/Platforms');
+const { ratingsTableReset } = require('../tables/Ratings');
+const { storesTableReset } = require('../tables/Stores');
+const {gameGenresTableReset} = require('../join-tables/GameGenres');
+const {gamePlatformsTableReset} = require('../join-tables/GamePlatforms');
+const {gameStoresTableReset} = require('../join-tables/GameStores');   
+const sql = require('../utilities/postgres.server');
 
 async function resetDatabase() {
     await gameTableReset();

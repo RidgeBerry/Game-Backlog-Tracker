@@ -1,4 +1,4 @@
-const sql = require('./postgres.server');
+const sql = require('../utilities/postgres.server');
 import type { Platform } from '../types/platform';
 
 async function getPlatformById(platformId:string){
